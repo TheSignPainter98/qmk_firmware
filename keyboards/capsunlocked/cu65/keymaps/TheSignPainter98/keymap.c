@@ -35,24 +35,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // [x] Fn+right is previous track
 // [n] Swap caps <-> lctrl
 // [ ] Shift+left/right is home/end
-// [ ] Shift+up/down is home/end
-// [ ] Fn+s for git status
-// [ ] Fn+p for git pull
-// [ ] Fn+pp for git push
-// [ ] Fn+a for git add all
-// [ ] Fn+c for git commit
-// [ ] Fn+C for git commit -a
-// [ ] Fn+cc for git commit --amend
-// [ ] Fn+CC for git commit -a --amend
-// [ ] Fn+Mod+# for cs:go
-//      - famas+light               b4151
-//      - A4+heavy                  b4252
-//      - AUG+heavy                 b4452
-//      - nova+light                b2151
-//      - Five-SeveN+light          b1451
-//      - flash                     b5145+ESC
-//      - flash+smoke               b5145+ESC
-//      - flash+smoke+molly+frag    b5145+ESC
+// [ ] Shift+up/down is pgup/pgdn
+// [ ] Git commands
+//      - [ ] git status
+//      - [ ] git pull
+//      - [ ] git push
+//      - [ ] git add all
+//      - [ ] git commit
+//      - [ ] git commit -a
+//      - [ ] git commit --amend
+//      - [ ] git commit -a --amend
+// [ ] CS:GO buys
+//      - [x] famas+light               b4151
+//      - [x] A4+heavy                  b4252
+//      - [x] AUG+heavy                 b4452
+//      - [x] nova+light                b2151
+//      - [x] ump+light                 b3351
+//      - [x] Five-SeveN+light          b1451
+//      - [x] flash                     b5145+ESC
+//      - [x] flash+smoke               b5145+ESC
+//      - [x] flash+smoke+molly+frag    b5145+ESC
+
+
 
 // Tap dance setup
 qk_tap_dance_action_t tap_dance_actions[] = {
@@ -64,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [L_DEFAULT] = LAYOUT_65_franken(
     /*
      * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┬───┐
-     * │ ` │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 0 │ - │ = │ Backsp│F14│
+     * │`/X│ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 0 │ - │ = │ Backsp│F14│
      * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┼───┤
      * │ Tab │ Q │ W │ E │ R │ T │ Y │ U │ I │ O │ P │ [ │ ] │  \  │Del│
      * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴─────┼───┤
@@ -75,16 +79,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * │Ctrl│LGUI│LAlt│         Space          │ L1 │RAlt│ │ ← │ ↓ │ → │
      * └────┴────┴────┴────────────────────────┴────┴────┘ └───┴───┴───┘
      */
-        TD(TD_GRAVE_ESC), KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,     KC_0,    KC_MINS, KC_EQL,  KC_BSPC, KC_F14,
-        KC_TAB,           KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,     KC_P,    KC_LBRC, KC_RBRC, KC_OTHP, KC_DEL,
-        KC_LCTL,          KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,     KC_SCLN, KC_QUOT, KC_NUHS, KC_ENT,  KC_PGUP,
-        KC_LSFT,          KC_NUBS, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM,  KC_DOT,  KC_SLSH, KC_RSFT, KC_UP,   KC_PGDN,
-        KC_LCTL,          KC_LGUI, KC_LALT,                   KC_SPC,                             MO(L_FN), KC_RALT,          KC_LEFT, KC_DOWN, KC_RGHT
+        TD(TD_GRAVE_ESC), KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,     KC_0,       KC_MINS, KC_EQL,  KC_BSPC, KC_F14,
+        KC_TAB,           KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,     KC_P,       KC_LBRC, KC_RBRC, KC_OTHP, KC_DEL,
+        KC_LCTL,          KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,     KC_SCLN,    KC_QUOT, KC_NUHS, KC_ENT,  KC_PGUP,
+        KC_LSFT,          KC_NUBS, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM,  KC_DOT,     KC_SLSH, KC_RSFT, KC_UP,   KC_PGDN,
+        KC_LCTL,          KC_LGUI, KC_LALT,                   KC_SPC,                             MO(L_FN), MO(L_CSGO),          KC_LEFT, KC_DOWN, KC_RGHT
     ),
     [L_FN] = LAYOUT_65_franken(
     /*
      * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┬───┐
-     * │ESC│ F1│ F2│ F3│ F4│ F5│ F6│ F7│ F8│ F9│F10│F11│F12│       │F13│
+     * │   │ F1│ F2│ F3│ F4│ F5│ F6│ F7│ F8│ F9│F10│F11│F12│       │F13│
      * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┼───┤
      * │     │   │   │   │   │   │   │   │   │   │   │   │   │ RST │MUT│
      * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴─────┼───┤
@@ -99,8 +103,41 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RESET,   KC_AUMU,
         KC_CAPS, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_AUVU,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_AUVD,
-        _______, _______, _______,                   _______,                            _______, _______,          KC_MEPT, KC_MEPA, KC_MENT
+        _______, _______, _______,                   _______,                            _______, KC_RALT,          KC_MEPT, KC_MEPA, KC_MENT
+    ),
+    [L_CSGO] = LAYOUT_65_franken(
+    /*
+     * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┬───┐
+     * │   │NH │NM │NL │   │   │   │   │   │   │   │   │   │       │   │
+     * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┼───┤
+     * │     │MH │MM │ML │AWP│   │   │   │   │   │   │   │   │     │   │
+     * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴─────┼───┤
+     * │      │AEH│AEL│PH │PL │   │   │   │   │   │   │   │        │   │
+     * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴────┬───┼───┤
+     * │    │   │   │   │   │   │   │   │   │   │   │   │      │   │   │
+     * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬─┬───┼───┼───┤
+     * │    │    │    │                        │    │    │ │   │   │   │
+     * └────┴────┴────┴────────────────────────┴────┴────┘ └───┴───┴───┘
+     */
+        _______, KC_NADE_HEAVY,         KC_NADE_MEDIUM,        KC_NADE_LIGHT,     _______,         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, KC_MAIN_HEAVY_BUY,     KC_MAIN_MEDIUM_BUY,    KC_MAIN_LIGHT_BUY, KC_AWP,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, KC_ANTI_ECO_HEAVY_BUY, KC_ANTI_ECO_LIGHT_BUY, KC_PISTOL_HEAVY,   KC_PISTOL_LIGHT, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, _______,               _______,               _______,           _______,         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, _______,               _______,                                                   _______,                            _______, _______,          _______, _______, _______
     ),
 };
 
-bool process_record_user(uint16_t keycode, keyrecord_t* record);
+func_arr(bool, (uint16_t, keyrecord_t*), custom_keycode_funcs) = {
+    process_record_user_csgo,
+};
+const int num_custom_keycode_funcs = sizeof(custom_keycode_funcs) / sizeof(*custom_keycode_funcs);
+
+bool process_record_user(uint16_t keycode, keyrecord_t* record)
+{
+    for (int i = 0; i < num_custom_keycode_funcs; i++)
+    {
+        if (custom_keycode_funcs[i] && custom_keycode_funcs[i](keycode, record))
+            return true;
+    }
+    return true;
+}
