@@ -26,3 +26,6 @@ TAP_DANCE_ENABLE = yes		# Enable tap-dance
 # TEST_ENABLE = yes
 
 LAYOUTS = 65_ansi 65_iso
+
+# Sources
+SRC += csgo.c
