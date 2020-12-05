@@ -1,6 +1,8 @@
 #pragma once
 
+// Options
 #define CSGO_ENABLE
+#define TAPPING_TERM 100
 
 // Qmk includes
 #include QMK_KEYBOARD_H
