@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include QMK_KEYBOARD_H
+#include "tsp-util.h"
 
 #define KCS_CSGO \
     KC_ANTI_ECO_HEAVY_BUY,\
@@ -17,4 +18,4 @@
     KC_PISTOL_HEAVY,\
     KC_PISTOL_LIGHT,\
 
-bool process_record_user_csgo(uint16_t keycode, keyrecord_t* record);
+PRU_SIG(csgo)

@@ -23,9 +23,24 @@ AUDIO_ENABLE = no           # Audio output
 TAP_DANCE_ENABLE = yes		# Enable tap-dance
 
 # My configuration
-# TEST_ENABLE = yes
+CSGO_ENABLE = yes
+GIT_ENABLE = yes
+MINECRAFT_ENABLE = yes
 
 LAYOUTS = 65_ansi 65_iso
 
 # Sources
-SRC += csgo.c
+ifeq ($(strip $(CSGO_ENABLE)),yes)
+	SRC += csgo.c
+	CFLAGS += -DCSGO_ENABLE
+endif
+
+ifeq ($(strip $(GIT_ENABLE)),yes)
+	SRC += git.c
+	CFLAGS += -DGIT_ENABLE
+endif
+
+ifeq ($(strip $(MINECRAFT_ENABLE)),yes)
+	SRC += minecraft.c
+	CFLAGS += -DMINECRAFT_ENABLE
+endif

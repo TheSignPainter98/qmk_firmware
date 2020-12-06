@@ -1,5 +1,5 @@
 /*
-Copyright 2020 CapsUnlocked
+Copyright 2020 CapsUnlocked, Ed Jones
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -40,12 +40,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //      - [ ] git status
 //      - [ ] git pull
 //      - [ ] git push
-//      - [ ] git add all
+//      - [ ] git add
 //      - [ ] git commit
 //      - [ ] git commit -a
 //      - [ ] git commit --amend
 //      - [ ] git commit -a --amend
-// [ ] CS:GO buys
+//      - [ ] git stash
+//      - [ ] git stash pop
+//      - [ ] git diff
+//      - [ ] git diff --cached
+// [x] CS:GO buys
 //      - [x] famas+light               b4151
 //      - [x] A4+heavy                  b4252
 //      - [x] AUG+heavy                 b4452
@@ -56,7 +60,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //      - [x] flash+smoke               b5145+ESC
 //      - [x] flash+smoke+molly+frag    b5145+ESC
 
-
+#ifdef GAME_ENABLED_
+#   define MO_L_GAME MO(L_GAME)
+#else
+#   define MO_L_GAME KC_RALT
+#endif
 
 // Tap dance setup
 qk_tap_dance_action_t tap_dance_actions[] = {
@@ -79,11 +87,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * │Ctrl│LGUI│LAlt│         Space          │ L1 │RAlt│ │ ← │ ↓ │ → │
      * └────┴────┴────┴────────────────────────┴────┴────┘ └───┴───┴───┘
      */
-        TD(TD_GRAVE_ESC), KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,     KC_0,       KC_MINS, KC_EQL,  KC_BSPC, KC_F14,
-        KC_TAB,           KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,     KC_P,       KC_LBRC, KC_RBRC, KC_OTHP, KC_DEL,
-        KC_LCTL,          KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,     KC_SCLN,    KC_QUOT, KC_NUHS, KC_ENT,  KC_PGUP,
-        KC_LSPO,          KC_NUBS, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM,  KC_DOT,     KC_SLSH, KC_RSPC, KC_UP,   KC_PGDN,
-        KC_LCTL,          KC_LGUI, KC_LALT,                   KC_SPC,                             MO(L_FN), MO(L_CSGO),          KC_LEFT, KC_DOWN, KC_RGHT
+        TD(TD_GRAVE_ESC), KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,     KC_0,      KC_MINS, KC_EQL,  KC_BSPC, KC_F14,
+        KC_TAB,           KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,     KC_P,      KC_LBRC, KC_RBRC, KC_OTHP, KC_DEL,
+        KC_LCTL,          KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,     KC_SCLN,   KC_QUOT, KC_NUHS, KC_ENT,  KC_PGUP,
+        KC_LSPO,          KC_NUBS, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM,  KC_DOT,    KC_SLSH, KC_RSPC, KC_UP,   KC_PGDN,
+        KC_LCTL,          KC_LGUI, KC_LALT,                   KC_SPC,                             MO(L_FN), MO_L_GAME,         KC_LEFT, KC_DOWN, KC_RGHT
     ),
     [L_FN] = LAYOUT_65_franken(
     /*
@@ -105,7 +113,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_AUVD,
         _______, _______, _______,                   _______,                            _______, KC_RALT,          KC_MEPT, KC_MEPA, KC_MENT
     ),
-    [L_CSGO] = LAYOUT_65_franken(
+#ifdef GAME_ENABLED_
+    [L_GAME] = LAYOUT_65_franken(
     /*
      * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┬───┐
      * │   │NH │NM │NL │   │   │   │   │   │   │   │   │   │       │   │
@@ -119,22 +128,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * │    │    │    │                        │    │    │ │   │   │   │
      * └────┴────┴────┴────────────────────────┴────┴────┘ └───┴───┴───┘
      */
-        _______, KC_NADE_HEAVY,         KC_NADE_MEDIUM,        KC_NADE_LIGHT,     _______,         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, KC_MAIN_HEAVY_BUY,     KC_MAIN_MEDIUM_BUY,    KC_MAIN_LIGHT_BUY, KC_AWP,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, KC_ANTI_ECO_HEAVY_BUY, KC_ANTI_ECO_LIGHT_BUY, KC_PISTOL_HEAVY,   KC_PISTOL_LIGHT, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, _______,               _______,               _______,           _______,         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, _______,               _______,                                                   _______,                            _______, _______,          _______, _______, _______
+        _______, CSGO(KC_NADE_HEAVY),         CSGO(KC_NADE_MEDIUM),        CSGO(KC_NADE_LIGHT),     _______,               _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______,
+        _______, CSGO(KC_MAIN_HEAVY_BUY),     CSGO(KC_MAIN_MEDIUM_BUY),    CSGO(KC_MAIN_LIGHT_BUY), CSGO(KC_AWP),          _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______,
+        _______, CSGO(KC_ANTI_ECO_HEAVY_BUY), CSGO(KC_ANTI_ECO_LIGHT_BUY), CSGO(KC_PISTOL_HEAVY),   CSGO(KC_PISTOL_LIGHT), _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______,
+        _______, _______,                     _______,                     _______,                 _______,               _______, _______, _______, _______, _______, _______, MC(KC_TWCL), _______, _______, _______,
+        _______, _______,                     _______,                                                                     _______,                            _______, _______,              _______, _______, _______
     ),
+#endif
 };
 
 func_arr(bool, (uint16_t, keyrecord_t*), custom_keycode_funcs) = {
-    process_record_user_csgo,
+#ifdef GIT_ENABLE
+    PRU_NAME(git),
+#endif
+#ifdef CSGO_ENABLE
+    PRU_NAME(csgo),
+#endif
+#ifdef MINECRAFT_ENABLE
+    PRU_NAME(minecraft),
+#endif
 };
 const int num_custom_keycode_funcs = sizeof(custom_keycode_funcs) / sizeof(*custom_keycode_funcs);
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record)
 {
-    for (int i = 0; i < num_custom_keycode_funcs; i++)
+    for (uint16_t i = 0; i < num_custom_keycode_funcs; i++)
     {
         if (custom_keycode_funcs[i] && custom_keycode_funcs[i](keycode, record))
             return true;
