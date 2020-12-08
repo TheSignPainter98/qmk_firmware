@@ -137,11 +137,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * │    │    │    │                        │    │    │ │   │   │   │
      * └────┴────┴────┴────────────────────────┴────┴────┘ └───┴───┴───┘
      */
-        _______, CSGO(KC_NADE_DECOY),       CSGO(KC_NADE_FLASH),       CSGO(KC_NADE_HE),            CSGO(KC_NADE_MOLLY),         _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______,
-        _______, CSGO(TD(TD_MAIN_LIGHT)),   CSGO(TD(TD_MAIN_MEDIUM)),  CSGO(TD(TD_MAIN_HEAVY)),     CSGO(TD(TD_AWP)),            _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______,
-        _______, CSGO(TD(TD_PISTOL_LIGHT)), CSGO(TD(TD_PISTOL_HEAVY)), CSGO(TD(TD_ANTI_ECO_LIGHT)), CSGO(TD(TD_ANTI_ECO_HEAVY)), _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______,
-        _______, _______,                   CSGO(KC_ARMOUR_LIGHT),     CSGO(KC_ARMOUR_HEAVY),       CSGO(KC_DEFUSE_KIT),         _______, _______, _______, _______, _______, _______, MC(KC_TWCL), _______, _______, _______,
-        _______, _______,                   _______,                                                                             _______,                            _______, _______,              _______, _______, _______
+        _______, CSGO(KC_NADE_DECOY),       CSGO(KC_NADE_FLASH),        CSGO(KC_NADE_HE),            CSGO(KC_NADE_MOLLY),         _______,                     _______, _______, _______, _______, _______, _______,     _______, _______, _______,
+        _______, CSGO(TD(TD_MAIN_LIGHT)),   CSGO(TD(TD_MAIN_MEDIUM)),   CSGO(TD(TD_MAIN_HEAVY)),     CSGO(TD(TD_AWP)),            _______,                     _______, _______, _______, _______, _______, _______,     _______, _______, _______,
+        _______, CSGO(TD(TD_PISTOL_LIGHT)), CSGO(TD(TD_PISTOL_MEDIUM)), CSGO(TD(TD_PISTOL_HEAVY)),   CSGO(TD(TD_ANTI_ECO_LIGHT)), CSGO(TD(TD_ANTI_ECO_HEAVY)), _______, _______, _______, _______, _______, _______,     _______, _______, _______,
+        _______, _______,                   CSGO(KC_ARMOUR_LIGHT),      CSGO(KC_ARMOUR_HEAVY),       CSGO(KC_DEFUSE_KIT),         _______,                     _______, _______, _______, _______, _______, MC(KC_TWCL), _______, _______, _______,
+        _______, _______,                   _______,                                                                              _______,                                                _______, _______,              _______, _______, _______
     ),
 #endif
 };

@@ -27,8 +27,9 @@ void csgo_tap_dance_finished(qk_tap_dance_state_t* state, void* user_data)
         CSGO_WEAPON_CASE(TD_MAIN_HEAVY,     "b4452")   // AUG, heavy
         CSGO_WEAPON_CASE(TD_MAIN_LIGHT,     "b4151")   // Famas, light
         CSGO_WEAPON_CASE(TD_MAIN_MEDIUM,    "b4252")   // M4, heavy
-        CSGO_WEAPON_CASE(TD_PISTOL_HEAVY,   "b1451")   // Five-SeveN, light
+        CSGO_WEAPON_CASE(TD_PISTOL_HEAVY,   "b1452")   // Five-SeveN, light
         CSGO_WEAPON_CASE(TD_PISTOL_LIGHT,   "b14")     // Five-SeveN
+        CSGO_WEAPON_CASE(TD_PISTOL_MEDIUM,  "b1451")   // Five-SeveN, light
     }
 
     // Buy grenades (Press once for light, twice for medium, thrice or hold at any time for heavy)
