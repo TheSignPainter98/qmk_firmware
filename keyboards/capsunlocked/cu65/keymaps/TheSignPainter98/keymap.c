@@ -69,6 +69,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Tap dance setup
 qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_GRAVE_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_GRAVE, KC_ESC),
+#if defined(CSGO_ENABLE) && defined(TDS_CSGO)
+    TDS_CSGO
+#endif
+#if defined(GIT_ENABLE) && defined(TDS_GIT)
+    TDS_GIT
+#endif
+#if defined(MINECRAFT_ENABLE) && defined(TDS_MINECRAFT)
+    TDS_MINECRAFT
+#endif
 };
 
 // Keymaps
@@ -90,8 +99,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TD(TD_GRAVE_ESC), KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,     KC_0,      KC_MINS, KC_EQL,  KC_BSPC, KC_F14,
         KC_TAB,           KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,     KC_P,      KC_LBRC, KC_RBRC, KC_OTHP, KC_DEL,
         KC_LCTL,          KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,     KC_SCLN,   KC_QUOT, KC_NUHS, KC_ENT,  KC_PGUP,
-        KC_LSPO,          KC_NUBS, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM,  KC_DOT,    KC_SLSH, KC_RSPC, KC_UP,   KC_PGDN,
-        KC_LCTL,          KC_LGUI, KC_LALT,                   KC_SPC,                             MO(L_FN), MO_L_GAME,         KC_LEFT, KC_DOWN, KC_RGHT
+        KC_LSFT,          KC_NUBS, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM,  KC_DOT,    KC_SLSH, KC_RSFT, KC_UP,   KC_PGDN,
+        KC_LCTL,          KC_LGUI, KC_LALT,                   KC_SPC,                             MO(L_FN), MO_L_GAME,          KC_LEFT, KC_DOWN, KC_RGHT
     ),
     [L_FN] = LAYOUT_65_franken(
     /*
@@ -128,11 +137,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * │    │    │    │                        │    │    │ │   │   │   │
      * └────┴────┴────┴────────────────────────┴────┴────┘ └───┴───┴───┘
      */
-        _______, CSGO(KC_NADE_HEAVY),         CSGO(KC_NADE_MEDIUM),        CSGO(KC_NADE_LIGHT),     _______,               _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______,
-        _______, CSGO(KC_MAIN_HEAVY_BUY),     CSGO(KC_MAIN_MEDIUM_BUY),    CSGO(KC_MAIN_LIGHT_BUY), CSGO(KC_AWP),          _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______,
-        _______, CSGO(KC_ANTI_ECO_HEAVY_BUY), CSGO(KC_ANTI_ECO_LIGHT_BUY), CSGO(KC_PISTOL_HEAVY),   CSGO(KC_PISTOL_LIGHT), _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______,
-        _______, _______,                     _______,                     _______,                 _______,               _______, _______, _______, _______, _______, _______, MC(KC_TWCL), _______, _______, _______,
-        _______, _______,                     _______,                                                                     _______,                            _______, _______,              _______, _______, _______
+        _______, CSGO(KC_NADE_DECOY),       CSGO(KC_NADE_FLASH),       CSGO(KC_NADE_HE),            CSGO(KC_NADE_MOLLY),         _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______,
+        _______, CSGO(TD(TD_MAIN_LIGHT)),   CSGO(TD(TD_MAIN_MEDIUM)),  CSGO(TD(TD_MAIN_HEAVY)),     CSGO(TD(TD_AWP)),            _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______,
+        _______, CSGO(TD(TD_PISTOL_LIGHT)), CSGO(TD(TD_PISTOL_HEAVY)), CSGO(TD(TD_ANTI_ECO_LIGHT)), CSGO(TD(TD_ANTI_ECO_HEAVY)), _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______,
+        _______, _______,                   CSGO(KC_ARMOUR_LIGHT),     CSGO(KC_ARMOUR_HEAVY),       CSGO(KC_DEFUSE_KIT),         _______, _______, _______, _______, _______, _______, MC(KC_TWCL), _______, _______, _______,
+        _______, _______,                   _______,                                                                             _______,                            _______, _______,              _______, _______, _______
     ),
 #endif
 };
