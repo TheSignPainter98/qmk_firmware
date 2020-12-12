@@ -18,6 +18,9 @@ PRU(csgo,
 
 void csgo_tap_dance_finished(qk_tap_dance_state_t* state, void* user_data)
 {
+    // Clear any keys being pressed
+    clear_keyboard();
+
     // Buy weapons and armour
     switch(state->keycode - QK_TAP_DANCE)
     {
