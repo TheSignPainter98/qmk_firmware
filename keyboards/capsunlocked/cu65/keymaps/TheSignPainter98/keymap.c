@@ -67,9 +67,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #   define MO_L_GAME KC_RALT
 #endif
 
+void grave_esc_tap_dance_finished(qk_tap_dance_state_t* state, void* user_data);
+
 // Tap dance setup
 qk_tap_dance_action_t tap_dance_actions[] = {
-    [TD_GRAVE_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_GRAVE, KC_ESC),
+    [TD_GRAVE_ESC] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, grave_esc_tap_dance_finished, NULL),
 #if defined(CSGO_ENABLE) && defined(TDS_CSGO)
     TDS_CSGO
 #endif
@@ -168,4 +170,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record)
             return true;
     }
     return true;
+}
+
+void grave_esc_tap_dance_finished(qk_tap_dance_state_t* state, void* user_data)
+{
+    if (state->count == 2)
+        SEND_STRING(SS_TAP(X_ESC));
+    else
+    {
+        const int str_len = state->count + 1;
+        char to_send[str_len];
+        for (int i = 0; i < str_len - 1; i++)
+            to_send[i] = '`';
+        to_send[str_len - 1] = '\0';
+        send_string(to_send);
+    }
 }
