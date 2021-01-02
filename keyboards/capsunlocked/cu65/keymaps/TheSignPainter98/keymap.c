@@ -72,6 +72,9 @@ void grave_esc_tap_dance_finished(qk_tap_dance_state_t* state, void* user_data);
 // Tap dance setup
 qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_GRAVE_ESC] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, grave_esc_tap_dance_finished, NULL),
+    [TD_F14_MUTE] = ACTION_TAP_DANCE_DOUBLE(KC_F14, KC_AUMU),
+    [TD_HOME_MEPT] = ACTION_TAP_DANCE_DOUBLE(KC_HOME, KC_MEPT),
+    [TD_END_MENT] = ACTION_TAP_DANCE_DOUBLE(KC_END, KC_MENT),
 #if defined(CSGO_ENABLE) && defined(TDS_CSGO)
     TDS_CSGO
 #endif
@@ -99,10 +102,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * │Ctrl│LGUI│LAlt│         Space          │ L1 │RAlt│ │ ← │ ↓ │ → │
      * └────┴────┴────┴────────────────────────┴────┴────┘ └───┴───┴───┘
      */
-        TD(TD_GRAVE_ESC), KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,     KC_0,      KC_MINS, KC_EQL,  KC_BSPC, KC_F14,
+        TD(TD_GRAVE_ESC), KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,     KC_0,      KC_MINS, KC_EQL,  KC_BSPC, TD(TD_F14_MUTE),
         KC_TAB,           KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,     KC_P,      KC_LBRC, KC_RBRC, KC_OTHP, KC_DEL,
-        KC_LCTL,          KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,     KC_SCLN,   KC_QUOT, KC_NUHS, KC_ENT,  KC_PGUP,
-        KC_LSFT,          KC_NUBS, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM,  KC_DOT,    KC_SLSH, KC_RSFT, KC_UP,   KC_PGDN,
+        KC_LCTL,          KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,     KC_SCLN,   KC_QUOT, KC_NUHS, KC_ENT,  KC_AUVU,
+        KC_LSFT,          KC_NUBS, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM,  KC_DOT,    KC_SLSH, KC_RSFT, KC_UP,   KC_AUVD,
         KC_LCTL,          KC_LGUI, KC_LALT,                   KC_SPC,                             MO(L_FN), MO_L_GAME,          KC_LEFT, KC_DOWN, KC_RGHT
     ),
     [L_FN] = LAYOUT_65_franken(
@@ -119,11 +122,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * │    │    │    │                        │    │    │ │PTK│PSE│NTK│
      * └────┴────┴────┴────────────────────────┴────┴────┘ └───┴───┴───┘
      */
-        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______, KC_F13,
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RESET,   KC_AUMU,
-        KC_CAPS, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_SLEP, _______, _______, _______, KC_AUVU,
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_AUVD,
-        _______, _______, _______,                   _______,                            _______, KC_RALT,          KC_MEPT, KC_MEPA, KC_MENT
+        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,           _______, KC_F13,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          RESET,   _______,
+        KC_CAPS, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_SLEP, _______, _______,          _______, KC_PGUP,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, KC_PGDN,
+        _______, _______, _______,                   _______,                            _______, KC_RALT,          TD(TD_HOME_MEPT), KC_MEPA, TD(TD_END_MENT)
     ),
 #ifdef GAME_ENABLED_
     [L_GAME] = LAYOUT_65_franken(

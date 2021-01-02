@@ -65,6 +65,9 @@ enum layers
 enum tap_dances
 {
 	TD_GRAVE_ESC,
+	TD_F14_MUTE,
+    TD_HOME_MEPT,
+    TD_END_MENT,
 #if defined(CSGO_ENABLE) && defined(TDNS_CSGO)
 	TDNS_CSGO
 #endif
