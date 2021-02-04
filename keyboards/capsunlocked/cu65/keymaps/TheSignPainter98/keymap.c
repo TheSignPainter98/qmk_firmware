@@ -60,11 +60,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //      - [x] flash+smoke               b5145+ESC
 //      - [x] flash+smoke+molly+frag    b5145+ESC
 // [x] Power keys
+// [ ] Spongebob mocking caps
 
 #ifdef GAME_ENABLED_
 #   define MO_L_GAME MO(L_GAME)
 #else
 #   define MO_L_GAME KC_RALT
+#endif
+#ifdef SPONGEBOB_ENABLE
+#   define TG_L_SPONGEBOB TG(L_SPONGEBOB)
+#else
+#   define TG_L_SPONGEBOB KC_RALT
 #endif
 
 void grave_esc_tap_dance_finished(qk_tap_dance_state_t* state, void* user_data);
@@ -84,7 +90,18 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #if defined(MINECRAFT_ENABLE) && defined(TDS_MINECRAFT)
     TDS_MINECRAFT
 #endif
+#if defined(SPONGEBOB_ENABLE) && defined(TDS_SPONGEBOB)
+    TDS_SPONGEBOB
+#endif
 };
+
+/* const keypos_t kand_swap_config[MATRIX_ROWS][MATRIX_COLS] = { */
+	/* { {0,0}, {0,0}, {0,0}, {0,0}, {0,0}, {0,0}, {0,0}, {0,0}, {0,0}, {0,0}, {0,0}, {0,0}, {0,0}, {0,0}, {0,0}, {0,0} }, \ */
+	/* { {0,1}, {0,1}, {0,1}, {0,1}, {0,1}, {0,1}, {0,1}, {0,1}, {0,1}, {0,1}, {0,1}, {0,1}, {0,1}, {0,1}, {0,1}, {0,1} }, \ */
+	/* { {0,2}, {0,2}, {0,2}, {0,2}, {0,2}, {0,2}, {0,2}, {0,2}, {0,2}, {0,2}, {0,2}, {0,2}, {0,2}, {0,2}, {0,2}, {0,2} }, \ */
+	/* { {0,3}, {0,3}, {0,3}, {0,3}, {0,3}, {0,3}, {0,3}, {0,3}, {0,3}, {0,3}, {0,3}, {0,3}, {0,3}, {0,3}, {0,3}, {0,3} }, \ */
+	/* { {0,4}, {0,4}, {0,4}, {0,4}, {0,4}, {0,4}, {0,4}, {0,4}, {0,4}, {0,4}, {0,4}, {0,4}, {0,4}, {0,4}, {0,4}, {0,4} }  \ */
+/* }; */
 
 // Keymaps
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -113,20 +130,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┬───┐
      * │   │ F1│ F2│ F3│ F4│ F5│ F6│ F7│ F8│ F9│F10│F11│F12│       │F13│
      * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┼───┤
-     * │     │N1 │N2 │N3 │   │   │   │   │   │   │   │   │   │ RST │MUT│
+     * │     │N7 │N9 │N9 │   │   │   │   │   │   │   │   │   │ RST │MUT│
      * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴─────┼───┤
      * │      │N4 │N5 │N6 │   │   │   │   │   │   │SLP│   │        │VUP│
      * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴────┬───┼───┤
-     * │    │N7 │N8 │N9 │   │   │   │   │   │   │   │   │      │   │VDN│
+     * │    │   │N1 │N2 │N3 │   │   │   │   │   │   │   │      │   │VDN│
      * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬─┬───┼───┼───┤
      * │    │ N0 │ N. │                        │    │    │ │PTK│PSE│NTK│
      * └────┴────┴────┴────────────────────────┴────┴────┘ └───┴───┴───┘
      */
-        _______, KC_F1,   KC_F2,     KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,           _______, KC_F13,
-        _______, KC_KP_1, KC_KP_2,   KC_KP_3, _______, _______, _______, _______, _______, _______, _______, _______, _______,          RESET,   _______,
-        KC_CAPS, KC_KP_4, KC_KP_5,   KC_KP_6, _______, _______, _______, _______, _______, _______, KC_SLEP, _______, _______,          _______, KC_PGUP,
-        _______, _______, KC_KP_7,   KC_KP_8, KC_KP_9, _______, _______, _______, _______, _______, _______, _______, _______,          _______, KC_PGDN,
-        _______, KC_KP_0, KC_KP_DOT,                   _______,                            _______, KC_RALT,          TD(TD_HOME_MEPT), KC_MEPA, TD(TD_END_MENT)
+        _______, KC_F1,   KC_F2,     KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,         KC_F11,  KC_F12,           _______, KC_F13,
+        _______, KC_KP_7, KC_KP_8,   KC_KP_9, _______, _______, _______, _______, _______, _______, _______,        _______, _______,          RESET,   _______,
+        KC_CAPS, KC_KP_4, KC_KP_5,   KC_KP_6, _______, _______, _______, _______, _______, _______, KC_SLEP,        _______, _______,          _______, KC_PGUP,
+        _______, _______, KC_KP_1,   KC_KP_2, KC_KP_3, _______, _______, _______, _______, _______, _______,        _______, _______,          _______, KC_PGDN,
+        _______, KC_KP_0, KC_KP_DOT,                   _______,                            _______, TG_L_SPONGEBOB,          TD(TD_HOME_MEPT), KC_MEPA, TD(TD_END_MENT)
     ),
 #ifdef GAME_ENABLED_
     [L_GAME] = LAYOUT_65_franken(
@@ -150,6 +167,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______,                   _______,                                                                              _______,                                                _______, _______,              _______, _______, _______
     ),
 #endif
+#ifdef SPONGEBOB_ENABLE
+    [L_SPONGEBOB] = LAYOUT_65_franken(
+    /*
+     * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┬───┐
+     * │   │NH │NM │NL │   │   │   │   │   │   │   │   │   │       │   │
+     * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┼───┤
+     * │     │MH │MM │ML │AWP│   │   │   │   │   │   │   │   │     │   │
+     * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴─────┼───┤
+     * │      │AEH│AEL│PH │PL │   │   │   │   │   │   │   │        │   │
+     * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴────┬───┼───┤
+     * │    │   │   │   │   │   │   │   │   │   │   │   │      │   │   │
+     * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬─┬───┼───┼───┤
+     * │    │    │    │                        │    │    │ │   │   │   │
+     * └────┴────┴────┴────────────────────────┴────┴────┘ └───┴───┴───┘
+     */
+        _______, _______, _______,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, KC_S_Q,  KC_S_W,    KC_S_E,  KC_S_R,  KC_S_T,  KC_S_Y,  KC_S_U,  KC_S_I,  KC_S_O,  KC_S_P,  _______, _______, _______, _______,
+        _______, KC_S_A,  KC_S_S,    KC_S_D,  KC_S_F,  KC_S_G,  KC_S_H,  KC_S_J,  KC_S_K,  KC_S_L,  _______, _______, _______, _______, _______,
+        _______, _______, KC_S_Z,    KC_S_X,  KC_S_C,  KC_S_V,  KC_S_B,  KC_S_N,  KC_S_M,  _______, _______, _______, _______, _______, _______,
+        _______, _______, _______,                     _______,                            _______, _______,          _______, _______, _______
+    ),
+#endif
 };
 
 func_arr(bool, (uint16_t, keyrecord_t*), custom_keycode_funcs) = {
@@ -161,6 +200,9 @@ func_arr(bool, (uint16_t, keyrecord_t*), custom_keycode_funcs) = {
 #endif
 #ifdef MINECRAFT_ENABLE
     PRU_NAME(minecraft),
+#endif
+#ifdef SPONGEBOB_ENABLE
+    PRU_NAME(spongebob),
 #endif
 };
 const int num_custom_keycode_funcs = sizeof(custom_keycode_funcs) / sizeof(*custom_keycode_funcs);

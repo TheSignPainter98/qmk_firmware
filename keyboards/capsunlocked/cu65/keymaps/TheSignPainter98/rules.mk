@@ -26,6 +26,7 @@ TAP_DANCE_ENABLE = yes		# Enable tap-dance
 CSGO_ENABLE = yes
 GIT_ENABLE = yes
 MINECRAFT_ENABLE = yes
+SPONGEBOB_ENABLE = yes
 
 LAYOUTS = 65_ansi 65_iso
 
@@ -43,4 +44,9 @@ endif
 ifeq ($(strip $(MINECRAFT_ENABLE)),yes)
 	SRC += minecraft.c
 	CFLAGS += -DMINECRAFT_ENABLE
+endif
+
+ifeq ($(strip $(SPONGEBOB_ENABLE)),yes)
+	SRC += spongebob.c
+	CFLAGS += -DSPONGEBOB_ENABLE
 endif

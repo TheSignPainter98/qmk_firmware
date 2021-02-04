@@ -35,6 +35,10 @@
 #	define MC(n) _______
 #endif
 
+#ifdef SPONGEBOB_ENABLE
+#   include "spongebob.h"
+#endif
+
 #if defined(CSGO_ENABLE) || defined(MINECRAFT_ENABLE)
 #	define GAME_ENABLED_
 #endif
@@ -51,6 +55,9 @@ enum keycodes
 #if defined(MINECRAFT_ENABLE) && defined(KCS_MINECRAFT)
 	KCS_MINECRAFT
 #endif
+#if defined(SPONGEBOB_ENABLE) && defined(KCS_SPONGEBOB)
+	KCS_SPONGEBOB
+#endif
 };
 
 enum layers
@@ -59,6 +66,9 @@ enum layers
 	L_FN,
 #ifdef GAME_ENABLED_
 	L_GAME,
+#endif
+#ifdef SPONGEBOB_ENABLE
+    L_SPONGEBOB
 #endif
 };
 
@@ -76,6 +86,9 @@ enum tap_dances
 #endif
 #if defined(MINECRAFT_ENABLE) && defined(TDNS_MINECRAFT)
 	TDNS_MINECRAFT
+#endif
+#if defined(SPONGEBOB_ENABLE) && defined(TDNS_SPONGEBOB)
+	TDNS_SPONGEBOB
 #endif
 };
 
