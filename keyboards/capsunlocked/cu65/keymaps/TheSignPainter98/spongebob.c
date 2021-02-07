@@ -2,8 +2,10 @@
 
 #include "keymap.h"
 
-static uint16_t r		= 0;
-static uint16_t x		= 0;
+#define R_INITIAL_VALUE 2
+
+static uint16_t r		= R_INITIAL_VALUE;
+static uint16_t x		= R_INITIAL_VALUE;
 static uint16_t const a = 997;
 static uint16_t const b = 757;
 static uint16_t const c = 10007;
@@ -12,9 +14,9 @@ PRU_SIG_(spongebob)
 {
 	if (record->event.pressed && KC_S_A <= keycode && keycode <= KC_S_Z)
 	{
-        char kc[] = { keycode - KC_S_A + 'a', '\0' };
+        const char kc[] = { keycode - KC_S_A + 'a', '\0' };
 
-        if (r & 1)
+        if ((r & 1 && keycode != KC_S_L) || keycode == KC_S_I)
             send_string(kc);
         else
         {
@@ -30,6 +32,7 @@ PRU_SIG_(spongebob)
 			x = (a * x + b) % c;
 			r = x;
 		}
+
 		return true;
 	}
 	return false;
