@@ -1,10 +1,11 @@
 #pragma once
 
-// Options
-#define TAPPING_TERM 100
-
 // Qmk includes
 #include QMK_KEYBOARD_H
+
+// Options
+#undef TAPPING_TERM
+#define TAPPING_TERM 100
 
 // Mandatory includes
 #include "func-sig.h"
