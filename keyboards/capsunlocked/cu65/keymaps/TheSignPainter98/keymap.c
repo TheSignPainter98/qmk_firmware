@@ -136,14 +136,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴────┬───┼───┤
      * │    │   │N1 │N2 │N3 │   │   │   │   │   │   │   │      │   │VDN│
      * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬─┬───┼───┼───┤
-     * │    │ N0 │ N. │                        │    │    │ │PTK│PSE│NTK│
+     * │    │ NL │ N. │ N0                     │    │    │ │PTK│PSE│NTK│
      * └────┴────┴────┴────────────────────────┴────┴────┘ └───┴───┴───┘
      */
         _______, KC_F1,   KC_F2,     KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,         KC_F11,  KC_F12,           _______, KC_F13,
         _______, KC_KP_7, KC_KP_8,   KC_KP_9, _______, _______, _______, _______, _______, _______, _______,        _______, _______,          RESET,   _______,
         KC_CAPS, KC_KP_4, KC_KP_5,   KC_KP_6, _______, _______, _______, _______, _______, _______, KC_SLEP,        _______, _______,          _______, KC_PGUP,
         _______, _______, KC_KP_1,   KC_KP_2, KC_KP_3, _______, _______, _______, _______, _______, _______,        _______, _______,          _______, KC_PGDN,
-        _______, KC_KP_0, KC_KP_DOT,                   _______,                            _______, TG_L_SPONGEBOB,          TD(TD_HOME_MEPT), KC_MEPA, TD(TD_END_MENT)
+        _______, KC_NLCK, KC_KP_DOT,                   KC_KP_0,                            _______, TG_L_SPONGEBOB,          TD(TD_HOME_MEPT), KC_MEPA, TD(TD_END_MENT)
     ),
 #ifdef GAME_ENABLED_
     [L_GAME] = LAYOUT_65_franken(
