@@ -68,16 +68,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #   define MO_L_GAME KC_RALT
 #endif
 #ifdef SPONGEBOB_ENABLE
-#   define TG_L_SPONGEBOB TG(L_SPONGEBOB)
+#   define TG_L_SPONGEBOB KC_S_TOGGLE
 #else
 #   define TG_L_SPONGEBOB KC_RALT
 #endif
+#ifdef AUTOCAPS_ENABLE
+#   define TG_L_AUTOCAPS KC_AC_TOGGLE
+#else
+#   define TG_L_AUTOCAPS KC_RSFT
+#endif
+
 
 void grave_esc_tap_dance_finished(qk_tap_dance_state_t* state, void* user_data);
+void grave_esc_tap_dance_on_each_tap(qk_tap_dance_state_t* state, void* user_data);
 
 // Tap dance setup
 qk_tap_dance_action_t tap_dance_actions[] = {
-    [TD_GRAVE_ESC] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, grave_esc_tap_dance_finished, NULL),
+    [TD_GRAVE_ESC] = ACTION_TAP_DANCE_FN_ADVANCED(grave_esc_tap_dance_on_each_tap, grave_esc_tap_dance_finished, NULL),
     [TD_F14_MUTE] = ACTION_TAP_DANCE_DOUBLE(KC_F14, KC_AUMU),
     [TD_HOME_MEPT] = ACTION_TAP_DANCE_DOUBLE(KC_HOME, KC_MEPT),
     [TD_END_MENT] = ACTION_TAP_DANCE_DOUBLE(KC_END, KC_MENT),
@@ -217,17 +224,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record)
     return true;
 }
 
+void grave_esc_tap_dance_on_each_tap(qk_tap_dance_state_t* state, void* user_data)
+{
+    switch (state->count)
+    {
+        case 1:
+        case 2:
+            return;
+        case 3:
+            SEND_STRING("```");
+            return;
+        default:
+            SEND_STRING("`");
+            return;
+    }
+}
+
 void grave_esc_tap_dance_finished(qk_tap_dance_state_t* state, void* user_data)
 {
+    if (state->count == 1)
+        SEND_STRING("`");
     if (state->count == 2)
         SEND_STRING(SS_TAP(X_ESC));
-    else
-    {
-        const int str_len = state->count + 1;
-        char to_send[str_len];
-        for (int i = 0; i < str_len - 1; i++)
-            to_send[i] = '`';
-        to_send[str_len - 1] = '\0';
-        send_string(to_send);
-    }
 }
