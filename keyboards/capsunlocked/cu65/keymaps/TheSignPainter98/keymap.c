@@ -60,7 +60,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //      - [x] flash+smoke               b5145+ESC
 //      - [x] flash+smoke+molly+frag    b5145+ESC
 // [x] Power keys
-// [ ] Spongebob mocking caps
+// [x] Spongebob mocking caps
+// [x] Auto-caps
 
 #ifdef GAME_ENABLED_
 #   define MO_L_GAME MO(L_GAME)
@@ -75,7 +76,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef AUTOCAPS_ENABLE
 #   define TG_L_AUTOCAPS KC_AC_TOGGLE
 #else
-#   define TG_L_AUTOCAPS KC_RSFT
+#   define TG_L_AUTOCAPS _______
 #endif
 
 
@@ -149,8 +150,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_F1,   KC_F2,     KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,         KC_F11,  KC_F12,           _______, KC_F13,
         _______, KC_KP_7, KC_KP_8,   KC_KP_9, _______, _______, _______, _______, _______, _______, _______,        _______, _______,          RESET,   _______,
         KC_CAPS, KC_KP_4, KC_KP_5,   KC_KP_6, _______, _______, _______, _______, _______, _______, KC_SLEP,        _______, _______,          _______, KC_PGUP,
-        _______, _______, KC_KP_1,   KC_KP_2, KC_KP_3, _______, _______, _______, _______, _______, _______,        _______, _______,          _______, KC_PGDN,
+        _______, _______, KC_KP_1,   KC_KP_2, KC_KP_3, _______, _______, _______, _______, _______, _______,        _______, TG_L_AUTOCAPS,    _______, KC_PGDN,
         _______, KC_NLCK, KC_KP_DOT,                   KC_KP_0,                            _______, TG_L_SPONGEBOB,          TD(TD_HOME_MEPT), KC_MEPA, TD(TD_END_MENT)
+    ),
+    [L_CUSTOM] = LAYOUT_65_franken(
+         _______, _______, _______,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+         _______, KC_C_Q,  KC_C_W,    KC_C_E,  KC_C_R,  KC_C_T,  KC_C_Y,  KC_C_U,  KC_C_I,  KC_C_O,  KC_C_P,  _______, _______, _______, _______,
+         _______, KC_C_A,  KC_C_S,    KC_C_D,  KC_C_F,  KC_C_G,  KC_C_H,  KC_C_J,  KC_C_K,  KC_C_L,  _______, _______, _______, _______, _______,
+         _______, _______, KC_C_Z,    KC_C_X,  KC_C_C,  KC_C_V,  KC_C_B,  KC_C_N,  KC_C_M,  _______, _______, _______, _______, _______, _______,
+         _______, _______, _______,                     _______,                            _______, _______,          _______, _______, _______
     ),
 #ifdef GAME_ENABLED_
     [L_GAME] = LAYOUT_65_franken(
@@ -174,28 +182,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______,                   _______,                                                                              _______,                                                _______, _______,              _______, _______, _______
     ),
 #endif
-#ifdef SPONGEBOB_ENABLE
-    [L_SPONGEBOB] = LAYOUT_65_franken(
-    /*
-     * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┬───┐
-     * │   │NH │NM │NL │   │   │   │   │   │   │   │   │   │       │   │
-     * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─────┼───┤
-     * │     │MH │MM │ML │AWP│   │   │   │   │   │   │   │   │     │   │
-     * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴─────┼───┤
-     * │      │AEH│AEL│PH │PL │   │   │   │   │   │   │   │        │   │
-     * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴────┬───┼───┤
-     * │    │   │   │   │   │   │   │   │   │   │   │   │      │   │   │
-     * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬─┬───┼───┼───┤
-     * │    │    │    │                        │    │    │ │   │   │   │
-     * └────┴────┴────┴────────────────────────┴────┴────┘ └───┴───┴───┘
-     */
-        _______, _______, _______,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, KC_S_Q,  KC_S_W,    KC_S_E,  KC_S_R,  KC_S_T,  KC_S_Y,  KC_S_U,  KC_S_I,  KC_S_O,  KC_S_P,  _______, _______, _______, _______,
-        _______, KC_S_A,  KC_S_S,    KC_S_D,  KC_S_F,  KC_S_G,  KC_S_H,  KC_S_J,  KC_S_K,  KC_S_L,  _______, _______, _______, _______, _______,
-        _______, _______, KC_S_Z,    KC_S_X,  KC_S_C,  KC_S_V,  KC_S_B,  KC_S_N,  KC_S_M,  _______, _______, _______, _______, _______, _______,
-        _______, _______, _______,                     _______,                            _______, _______,          _______, _______, _______
-    ),
-#endif
 };
 
 func_arr(bool, (uint16_t, keyrecord_t*), custom_keycode_funcs) = {
@@ -211,16 +197,17 @@ func_arr(bool, (uint16_t, keyrecord_t*), custom_keycode_funcs) = {
 #ifdef SPONGEBOB_ENABLE
     PRU_NAME(spongebob),
 #endif
+#ifdef AUTOCAPS_ENABLE
+    PRU_NAME(autocaps),
+#endif
 };
 const int num_custom_keycode_funcs = sizeof(custom_keycode_funcs) / sizeof(*custom_keycode_funcs);
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record)
 {
     for (uint16_t i = 0; i < num_custom_keycode_funcs; i++)
-    {
         if (custom_keycode_funcs[i] && custom_keycode_funcs[i](keycode, record))
             return true;
-    }
     return true;
 }
 

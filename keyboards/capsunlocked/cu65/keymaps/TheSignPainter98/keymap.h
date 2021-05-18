@@ -40,13 +40,50 @@
 #   include "spongebob.h"
 #endif
 
+#ifdef AUTOCAPS_ENABLE
+#   include "autocaps.h"
+#endif
+
 #if defined(CSGO_ENABLE) || defined(MINECRAFT_ENABLE)
 #	define GAME_ENABLED_
 #endif
 
+#define KCS_CUSTOM \
+    KC_C_A,\
+    KC_C_B,\
+    KC_C_C,\
+    KC_C_D,\
+    KC_C_E,\
+    KC_C_F,\
+    KC_C_G,\
+    KC_C_H,\
+    KC_C_I,\
+    KC_C_J,\
+    KC_C_K,\
+    KC_C_L,\
+    KC_C_M,\
+    KC_C_N,\
+    KC_C_O,\
+    KC_C_P,\
+    KC_C_Q,\
+    KC_C_R,\
+    KC_C_S,\
+    KC_C_T,\
+    KC_C_U,\
+    KC_C_V,\
+    KC_C_W,\
+    KC_C_X,\
+    KC_C_Y,\
+    KC_C_Z,\
+    KC_C_SPC,\
+    KC_C_DOT,\
+    KC_C_1,\
+    KC_C_SLSH,\
+
 enum keycodes
 {
 	KC_CUSTOM_UNUSED = SAFE_RANGE,
+    KCS_CUSTOM
 #if defined(CSGO_ENABLE) && defined(KCS_CSGO)
 	KCS_CSGO
 #endif
@@ -59,17 +96,24 @@ enum keycodes
 #if defined(SPONGEBOB_ENABLE) && defined(KCS_SPONGEBOB)
 	KCS_SPONGEBOB
 #endif
+#if defined(AUTOCAPS_ENABLE) && defined(KCS_AUTOCAPS)
+	KCS_AUTOCAPS
+#endif
 };
 
 enum layers
 {
 	L_DEFAULT,
 	L_FN,
+	L_CUSTOM,
 #ifdef GAME_ENABLED_
 	L_GAME,
 #endif
 #ifdef SPONGEBOB_ENABLE
-    L_SPONGEBOB
+    L_SPONGEBOB,
+#endif
+#ifdef AUTOCAPS_ENABLE
+    L_AUTOCAPS,
 #endif
 };
 
@@ -90,6 +134,9 @@ enum tap_dances
 #endif
 #if defined(SPONGEBOB_ENABLE) && defined(TDNS_SPONGEBOB)
 	TDNS_SPONGEBOB
+#endif
+#if defined(AUTOCAPS_ENABLE) && defined(TDNS_AUTOCAPS)
+	TDNS_AUTOCAPS
 #endif
 };
 

@@ -27,6 +27,7 @@ CSGO_ENABLE = yes
 GIT_ENABLE = yes
 MINECRAFT_ENABLE = yes
 SPONGEBOB_ENABLE = yes
+AUTOCAPS_ENABLE = yes
 
 LAYOUTS = 65_ansi 65_iso
 
@@ -49,4 +50,9 @@ endif
 ifeq ($(strip $(SPONGEBOB_ENABLE)),yes)
 	SRC += spongebob.c
 	CFLAGS += -DSPONGEBOB_ENABLE
+endif
+
+ifeq ($(strip $(AUTOCAPS_ENABLE)),yes)
+	SRC += autocaps.c
+	CFLAGS += -DAUTOCAPS_ENABLE
 endif

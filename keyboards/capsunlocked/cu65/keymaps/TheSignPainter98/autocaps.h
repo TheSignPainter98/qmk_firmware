@@ -3,6 +3,6 @@
 #include "tsp-util.h"
 #include QMK_KEYBOARD_H
 
-#define KCS_SPONGEBOB KC_S_TOGGLE,
+#define KCS_AUTOCAPS KC_AC_TOGGLE,
 
-PRU_SIG(spongebob)
+PRU_SIG(autocaps)
