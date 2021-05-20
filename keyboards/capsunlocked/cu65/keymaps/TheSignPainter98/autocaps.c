@@ -5,31 +5,43 @@
 static bool autocaps_active	   = false;
 static bool capitalise		   = false;
 static bool shift_down		   = false;
+static bool ctrl_down		   = false;
 static bool maybe_capitalise_i = false;
 
 static void handle_capitalised_i(void);
+static void activate_autocaps(void);
+static void deactivate_autocaps(void);
+
+static void activate_autocaps(void)
+{
+	autocaps_active = true;
+	layer_on(L_CUSTOM);
+	capitalise		   = true;
+	maybe_capitalise_i = true;
+}
+
+static void deactivate_autocaps(void)
+{
+	autocaps_active = false;
+	layer_off(L_CUSTOM);
+}
 
 PRU_SIG_(autocaps)
 {
-	/* if (autocaps_active) */
-	/* { */
-	/* send_string(shift_down ? "S" : "s"); */
-	/* send_string(capitalise ? "Q" : "q"); */
-	/* } */
 	if (keycode == KC_LSFT || keycode == KC_RSFT)
 		shift_down = record->event.pressed;
+	else if (keycode == KC_LCTL || keycode == KC_RCTL)
+		ctrl_down = record->event.pressed;
+	else if (autocaps_active && ((ctrl_down && keycode == KC_LBRC) || keycode == KC_ESC))
+		deactivate_autocaps();
 	else if (record->event.pressed)
 	{
 		if (keycode == KC_AC_TOGGLE)
 		{
-			if ((autocaps_active = !autocaps_active))
-			{
-				layer_move(L_CUSTOM);
-				capitalise		   = true;
-				maybe_capitalise_i = true;
-			}
+			if (autocaps_active)
+				deactivate_autocaps();
 			else
-				layer_move(L_DEFAULT);
+				activate_autocaps();
 			return true;
 		}
 		else if (autocaps_active)
@@ -40,8 +52,8 @@ PRU_SIG_(autocaps)
 					capitalise		   = false;
 					maybe_capitalise_i = true;
 					return true;
-                case KC_C_A ... KC_C_H:
-                case KC_C_J ... KC_C_Z:
+				case KC_C_A ... KC_C_H:
+				case KC_C_J ... KC_C_Z:
 				{
 					const char kc[] = { keycode - KC_C_A + 'a', '\0' };
 					if (capitalise)
@@ -65,10 +77,10 @@ PRU_SIG_(autocaps)
 						capitalise = true;
 					handle_capitalised_i();
 					return false;
-                case KC_ENT:
-                    capitalise = true;
-                    handle_capitalised_i();
-                    return false;
+				case KC_ENT:
+					capitalise = true;
+					handle_capitalised_i();
+					return false;
 				case KC_SLSH:
 					if (shift_down)
 						capitalise = true;
