@@ -62,6 +62,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // [x] Power keys
 // [x] Spongebob mocking caps
 // [x] Auto-caps
+// [x] Cursed speech
 
 #ifdef GAME_ENABLED_
 #   define MO_L_GAME MO(L_GAME)
@@ -77,6 +78,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #   define TG_L_AUTOCAPS KC_AC_TOGGLE
 #else
 #   define TG_L_AUTOCAPS _______
+#endif
+#ifdef CURSED_ENABLE
+#   define TG_L_CURSED KC_CR_TOGGLE
+#else
+#   define TG_L_CURSED _______
 #endif
 
 
@@ -100,6 +106,9 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #endif
 #if defined(SPONGEBOB_ENABLE) && defined(TDS_SPONGEBOB)
     TDS_SPONGEBOB
+#endif
+#if defined(CURSED_ENABLE) && defined(TDS_CURSED)
+    TDS_CURSED
 #endif
 };
 
@@ -147,18 +156,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * │    │ NL │ N. │ N0                     │    │    │ │PTK│PSE│NTK│
      * └────┴────┴────┴────────────────────────┴────┴────┘ └───┴───┴───┘
      */
-        _______, KC_F1,   KC_F2,     KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,         KC_F11,  KC_F12,           _______, KC_F13,
-        _______, KC_KP_7, KC_KP_8,   KC_KP_9, _______, _______, _______, _______, _______, _______, _______,        _______, _______,          RESET,   _______,
-        KC_CAPS, KC_KP_4, KC_KP_5,   KC_KP_6, _______, _______, _______, _______, _______, _______, KC_SLEP,        _______, _______,          _______, KC_PGUP,
-        _______, _______, KC_KP_1,   KC_KP_2, KC_KP_3, _______, _______, _______, _______, _______, _______,        _______, TG_L_AUTOCAPS,    _______, KC_PGDN,
-        _______, KC_NLCK, KC_KP_DOT,                   KC_KP_0,                            _______, TG_L_SPONGEBOB,          TD(TD_HOME_MEPT), KC_MEPA, TD(TD_END_MENT)
+        _______, KC_F1,   KC_F2,     KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,         KC_F11,  KC_F12,           _______,     KC_F13,
+        _______, KC_KP_7, KC_KP_8,   KC_KP_9, _______, _______, _______, _______, _______, _______, _______,        _______, _______,          RESET,       _______,
+        KC_CAPS, KC_KP_4, KC_KP_5,   KC_KP_6, _______, _______, _______, _______, _______, _______, KC_SLEP,        _______, _______,          _______,     KC_PGUP,
+        _______, _______, KC_KP_1,   KC_KP_2, KC_KP_3, _______, _______, _______, _______, _______, _______,        _______, TG_L_AUTOCAPS,    TG_L_CURSED, KC_PGDN,
+        _______, KC_NLCK, KC_KP_DOT,                   KC_KP_0,                            _______, TG_L_SPONGEBOB,          TD(TD_HOME_MEPT), KC_MEPA,     TD(TD_END_MENT)
     ),
     [L_CUSTOM] = LAYOUT_65_franken(
-         _______, _______, _______,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-         _______, KC_C_Q,  KC_C_W,    KC_C_E,  KC_C_R,  KC_C_T,  KC_C_Y,  KC_C_U,  KC_C_I,  KC_C_O,  KC_C_P,  _______, _______, _______, _______,
-         _______, KC_C_A,  KC_C_S,    KC_C_D,  KC_C_F,  KC_C_G,  KC_C_H,  KC_C_J,  KC_C_K,  KC_C_L,  _______, _______, _______, _______, _______,
-         _______, _______, KC_C_Z,    KC_C_X,  KC_C_C,  KC_C_V,  KC_C_B,  KC_C_N,  KC_C_M,  _______, _______, _______, _______, _______, _______,
-         _______, _______, _______,                     _______,                            _______, _______,          _______, _______, _______
+         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+         _______, KC_C_Q,  KC_C_W,  KC_C_E,  KC_C_R,  KC_C_T,  KC_C_Y,  KC_C_U,  KC_C_I,  KC_C_O,  KC_C_P,  _______, _______, _______, _______,
+         _______, KC_C_A,  KC_C_S,  KC_C_D,  KC_C_F,  KC_C_G,  KC_C_H,  KC_C_J,  KC_C_K,  KC_C_L,  _______, _______, _______, _______, _______,
+         _______, _______, KC_C_Z,  KC_C_X,  KC_C_C,  KC_C_V,  KC_C_B,  KC_C_N,  KC_C_M,  _______, _______, _______, _______, _______, _______,
+         _______, _______, _______,                   _______,                            _______, _______,          _______, _______, _______
     ),
 #ifdef GAME_ENABLED_
     [L_GAME] = LAYOUT_65_franken(
@@ -199,6 +208,9 @@ func_arr(bool, (uint16_t, keyrecord_t*), custom_keycode_funcs) = {
 #endif
 #ifdef AUTOCAPS_ENABLE
     PRU_NAME(autocaps),
+#endif
+#ifdef CURSED_ENABLE
+    PRU_NAME(cursed),
 #endif
 };
 const int num_custom_keycode_funcs = sizeof(custom_keycode_funcs) / sizeof(*custom_keycode_funcs);

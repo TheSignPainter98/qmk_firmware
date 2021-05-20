@@ -28,6 +28,7 @@ GIT_ENABLE = yes
 MINECRAFT_ENABLE = yes
 SPONGEBOB_ENABLE = yes
 AUTOCAPS_ENABLE = yes
+CURSED_ENABLE = yes
 
 LAYOUTS = 65_ansi 65_iso
 
@@ -55,4 +56,9 @@ endif
 ifeq ($(strip $(AUTOCAPS_ENABLE)),yes)
 	SRC += autocaps.c
 	CFLAGS += -DAUTOCAPS_ENABLE
+endif
+
+ifeq ($(strip $(CURSED_ENABLE)),yes)
+	SRC += cursed.c
+	CFLAGS += -DCURSED_ENABLE
 endif

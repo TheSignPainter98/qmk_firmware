@@ -44,6 +44,10 @@
 #   include "autocaps.h"
 #endif
 
+#ifdef CURSED_ENABLE
+#   include "cursed.h"
+#endif
+
 #if defined(CSGO_ENABLE) || defined(MINECRAFT_ENABLE)
 #	define GAME_ENABLED_
 #endif
@@ -99,6 +103,9 @@ enum keycodes
 #if defined(AUTOCAPS_ENABLE) && defined(KCS_AUTOCAPS)
 	KCS_AUTOCAPS
 #endif
+#if defined(CURSED_ENABLE) && defined(KCS_CURSED)
+	KCS_CURSED
+#endif
 };
 
 enum layers
@@ -108,12 +115,6 @@ enum layers
 	L_CUSTOM,
 #ifdef GAME_ENABLED_
 	L_GAME,
-#endif
-#ifdef SPONGEBOB_ENABLE
-    L_SPONGEBOB,
-#endif
-#ifdef AUTOCAPS_ENABLE
-    L_AUTOCAPS,
 #endif
 };
 
@@ -137,6 +138,9 @@ enum tap_dances
 #endif
 #if defined(AUTOCAPS_ENABLE) && defined(TDNS_AUTOCAPS)
 	TDNS_AUTOCAPS
+#endif
+#if defined(CURSED_ENABLE) && defined(TDNS_CURSED)
+	TDNS_CURSED
 #endif
 };
 
