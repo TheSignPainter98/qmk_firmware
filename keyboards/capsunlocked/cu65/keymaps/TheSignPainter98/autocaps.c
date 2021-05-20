@@ -65,6 +65,10 @@ PRU_SIG_(autocaps)
 						capitalise = true;
 					handle_capitalised_i();
 					return false;
+                case KC_ENT:
+                    capitalise = true;
+                    handle_capitalised_i();
+                    return false;
 				case KC_SLSH:
 					if (shift_down)
 						capitalise = true;
